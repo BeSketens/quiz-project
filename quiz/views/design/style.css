@@ -1,0 +1,75 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#page-header {
+    background-color: firebrick;
+}
+
+#page-header a {
+    color: beige;
+    text-decoration: none;
+}
+
+#page-header a:hover {
+    color: #222222;
+}
+
+#left-header {
+    display: flex;
+}
+
+#left-header nav {
+    padding-top: 25px;
+    padding-left: 10px;
+    margin-left: 10px;
+    border-left: 2px solid beige;
+}
+
+#left-header img {
+    max-height: 150px;
+}
+
+#left-header h1 {
+    margin-left: 20px;
+}
+
+#right-header {
+    float: right;
+}
+
+.quiz-links {
+    text-decoration: none; 
+    color: initial;
+}
+
+.quiz-articles {
+    padding: 15px; 
+    border: 2px solid firebrick; 
+    margin: 10px 0;
+}
+
+#quiz-container {
+    max-width: 500px;
+    margin: auto;
+}
+
+.result {
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+}
+
+.failure {
+    color: red;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+    margin: auto;
+    text-align: center;
+}
