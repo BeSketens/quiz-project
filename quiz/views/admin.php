@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 <body>
     <header id="page-header">
         <div id="left-header">
-            <img src="./images/quiz-logo.png" alt="logo">
+            <img src="./logo/quiz-logo.png" alt="logo">
             <a href="index.php">
                 <h1>Titre du site</h1>
             </a>

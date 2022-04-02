@@ -1,75 +1,95 @@
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 #page-header {
-    background-color: firebrick;
+  background-color: firebrick;
 }
 
 #page-header a {
-    color: beige;
-    text-decoration: none;
+  color: beige;
+  text-decoration: none;
 }
 
 #page-header a:hover {
-    color: #222222;
+  color: #222222;
 }
 
 #left-header {
-    display: flex;
+  display: flex;
 }
 
 #left-header nav {
-    padding-top: 25px;
-    padding-left: 10px;
-    margin-left: 10px;
-    border-left: 2px solid beige;
+  padding-top: 25px;
+  padding-left: 10px;
+  margin-left: 10px;
+  border-left: 2px solid beige;
+}
+
+#left-header nav a {
+  margin: 0 5px;
+  border-bottom: 1px dashed #222222;
 }
 
 #left-header img {
-    max-height: 150px;
+  max-height: 150px;
 }
 
 #left-header h1 {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 #right-header {
-    float: right;
+  float: right;
 }
 
 .quiz-links {
-    text-decoration: none; 
-    color: initial;
+  text-decoration: none;
+  color: initial;
 }
 
 .quiz-articles {
-    padding: 15px; 
-    border: 2px solid firebrick; 
-    margin: 10px 0;
+  padding: 15px;
+  border: 2px solid firebrick;
+  margin: 10px 0;
 }
 
-#quiz-container {
-    max-width: 500px;
-    margin: auto;
+main {
+  max-width: 500px;
+  margin: auto;
 }
 
 .result {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .success {
-    color: green;
+  color: green;
 }
 
-.failure {
-    color: red;
+.failure,
+.error {
+  color: red;
 }
 
 footer {
-    display: flex;
-    flex-direction: column;
-    max-width: max-content;
-    margin: auto;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+  margin: auto;
+  text-align: center;
+}
+
+#createLoginForm {
+  text-align: center;
+}
+
+#createLoginForm input {
+  margin: 10px;
+}
+
+.rate {
+  font-weight: bold;
+  text-align: center;
+  color: deeppink;
 }

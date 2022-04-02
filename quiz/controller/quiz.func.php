@@ -92,3 +92,35 @@ function calculReponsesCorrectes($quizzes)
 
     return '<h4 class="result ' . $class . '">' . $msg . '</h4>';
 }
+
+function rateQuiz(int $userId, int $quizId, bool $rateNotif)
+{ 
+    if ($userId != 0) { # == user not connected
+        if (hasUserAlreadyRatedQuiz($userId, $quizId)) {
+        ?>
+            <form action="../controller/quizRate.script.php" method="POST">
+                <input type="hidden" name="uid" value="<?= $userId ?>">
+                <input type="hidden" name="qid" value="<?= $quizId ?>">
+                <label>
+                    <span id="rateValue">0</span>
+                    <input id="rateInput" type="range" name="rate" min="0" max="5" value="0">
+                </label>
+                <button type="submit" name="rateSubmit">Évaluer le quiz</button>
+            </form> 
+            <script>
+                let valueContainer = document.getElementById('rateValue');
+                let valueInput = document.getElementById('rateInput');
+
+                valueInput.addEventListener('change', () => {
+                    valueContainer.innerHTML = valueInput.value;
+                })
+            </script>  
+<?php
+        } elseif ($rateNotif == true) { ?>
+            <p class="success">Évaluation du quiz effetuée</p>
+        <?php 
+        } else { ?>
+            <p class="rate">Note mise : <?= getQuizEvaluationOfUser($userId, $quizId) ?></p>
+        <?php }
+    }
+}

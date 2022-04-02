@@ -1,6 +1,6 @@
 <?php
 
-$folder = 'images'; // dossier contenant l'image
+$folder = 'logo'; // dossier contenant l'image
 $img = $_FILES["logo"];
 $imgName = $_FILES["logo"]["name"];
 $imgTmpName = $_FILES["logo"]["tmp_name"];

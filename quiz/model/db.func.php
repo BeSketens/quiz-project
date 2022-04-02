@@ -72,3 +72,77 @@ function filterQuizzes(string $filter)
 
     return setUpDataArray($request);
 }
+
+# insert new user NOT ADMIN
+function createUser(string $username, string $pwd, string $email, string $sexe)
+{
+    $type = 'membre';
+    $activated = 'Y';
+    $password = password_hash($pwd, CRYPT_BLOWFISH);
+
+    global $db;
+    $request = $db->prepare('INSERT INTO user (username, password, type, activated, email, sexe) VALUES (?, ?, ?, ?, ?, ?)');
+    $request->execute(array($username, $password, $type, $activated, $email, $sexe));
+}
+
+#select user from db
+function getUser(string $email, string $pwd)
+{
+    global $db;
+    $request = $db->prepare('SELECT * FROM user WHERE email = ?');
+    $request->execute(array($email));
+
+    $user = $request->fetch();
+
+    if (!empty($user)) {
+
+        if (password_verify($pwd, $user['password'])) {
+            # session var set up
+            session_start();
+            if ($user['type'] == 'admin'){
+                $_SESSION['admin'] = true;
+            }
+            $_SESSION['user_id'] = $user['id'];
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+
+    return true;
+}
+
+# check if user already rated specific quiz
+function hasUserAlreadyRatedQuiz(int $userId, int $quizId) : bool
+{   
+    global $db;
+    $request = $db->prepare('SELECT id
+                            FROM uq_evaluation
+                            WHERE user_id = ? and quiz_id = ?');
+    $request->execute(array($userId, $quizId));
+
+    return empty($request->fetch());
+}
+
+# get quiz rate
+function getQuizEvaluationOfUser(int $userId, int $quizId) : int
+{
+    global $db;
+    $request = $db->prepare('SELECT evaluation
+                            FROM uq_evaluation
+                            WHERE user_id = ? and quiz_id = ?');
+    $request->execute(array($userId, $quizId));
+    $result = $request->fetch();
+
+    return $result['evaluation'];
+}
+
+# rate a quiz
+function sendQuizRate(int $userId, int $quizId, int $eval) : void
+{
+    global $db;
+    $date = date('Y-m-d H:I:S');
+    $request = $db->prepare('INSERT INTO uq_evaluation (user_id, quiz_id, evaluation, dateEvaluation) VALUES (?,?,?,?)');
+    $request->execute(array($userId, $quizId, $eval, $date));
+}
